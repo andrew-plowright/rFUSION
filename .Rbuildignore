@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^builder_rFUSION\.R$
+^oldfunctions$
+^createTestData$

@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+oldfunctions
+data-raw
+createTestData
+builder_rFUSION.R
