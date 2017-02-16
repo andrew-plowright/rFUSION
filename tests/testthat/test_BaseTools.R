@@ -5,9 +5,9 @@ context("Tests for rFUSION base tools")
 ### PRE-PROCESS
 
   # Read input data
-  inLAS <- system.file("extdata", "SamplePlot.las", package = "rFUSION")
-  subAreas <- system.file("extdata", "subAreas.shp", package = "rFUSION")
-  inTiles <- list.files(system.file("extdata", package = "rFUSION"), pattern = "SampleTile", full.names = TRUE)
+  inLAS <- file.path("testData", "SamplePlot.las")
+  subAreas <- file.path("testData", "subAreas.shp")
+  inTiles <- list.files("testData", pattern = "SampleTile", full.names = TRUE)
 
   # Create temporary folder
   tempFolder <- file.path(tempdir(), "rFUSIONtemp")
@@ -102,7 +102,7 @@ context("Tests for rFUSION base tools")
     # Both rasters have same extent
     expect_identical(raster::extent(ground), raster::extent(canopy))
 
-    expect_equal(min(canopy[], na.rm = TRUE), 0.00, tolerance = 0.00001)
+    expect_equal(min(canopy[], na.rm = TRUE), 0.00106, tolerance = 0.00001)
     expect_equal(max(canopy[], na.rm = TRUE), 3.361639, tolerance = 0.00001)
   })
 

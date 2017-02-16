@@ -13,7 +13,7 @@ executeFunction <- function(toolName, inputs, formals, env = parent.frame()){
   switches <- formals[!formals %in% c(inputs)]
 
   # Create function name
-  execFile = paste0(options()$rFUSION.path,  "\\", toolName, ".exe")
+  execFile <- paste0(options()$rFUSION.path,  "\\", toolName, ".exe")
 
   # Test to see whether or not file exists
   if(!file.exists(execFile)){
