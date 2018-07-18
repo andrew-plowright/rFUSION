@@ -14,6 +14,7 @@
 \alias{GroundFilter}
 \alias{LDA2ASCII}
 \alias{PolyClipData}
+\alias{ThinData}
 \title{FUSION tools}
 \usage{
 ASCII2DTM(surfacefile, xyunits = "m", zunits = "m", coordsys = 0,
@@ -72,6 +73,9 @@ GroundFilter(outputfile, cellsize, datafile, surface = NULL, median = NULL,
 LDA2ASCII(InputFile, OutputFile, format)
 
 PolyClipData(Polyfile, Outputfile, Datafile, multifile = NULL, class = NULL)
+
+ThinData(outputfile, density, cellsize, datafile, rseed = NULL,
+  index = NULL, class = NULL, lda = NULL, precision = NULL)
 }
 \arguments{
 \item{xyunits}{character. \code{"m"} for meters, \code{"f"} for feet.}
@@ -95,9 +99,8 @@ normalize a point cloud to height above ground.}
 
 \item{gridxy}{numeric. Vector of four numbers: X1, Y1, X2, Y2. Force the origin of an output raster (lower left corner)
 to be (X1,Y1) instead of computing an origin from the data extents and force the upper right corner to be (X2, Y2).
-X2 and Y2 will be rounded up to a multiple of \code{cellsize}. \strong{WARNING:} the \emph{center} of the outpur raster
-cells will be aligned to the vector defined by \code{gridxy}, not the cell edges. To facilitate the use of \code{gridxy},
-use the \code{\link{FUSIONExtentRounder}} function.}
+\strong{WARNING:} the \code{rFUSION.grixyAdjust} global option can influence the behaviour of this argument. See
+\code{\link{GridXY}} for more details.}
 
 \item{align}{A PLANS format DTM file to which an output raster will be aligned. Same behavior as \code{gridxy}, except
 parameters are read from the DTM file.}
@@ -140,6 +143,8 @@ FUSION is created and maintained by Robert J. McGaughey, of the U.S. Forest Serv
 \item \code{LDA2ASCII}: Convert a LDA or LAS file to an ASCII text file
 
 \item \code{PolyClipData}: Clip a point cloud to a shapefile (SHP)
+
+\item \code{ThinData}: Thin LIDAR data to specific pulse densities.
 }}
 
 \references{

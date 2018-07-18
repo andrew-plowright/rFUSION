@@ -40,9 +40,8 @@
 #' @param class numeric. Used to restrict a function to certain classified points.
 #' @param gridxy numeric. Vector of four numbers: X1, Y1, X2, Y2. Force the origin of an output raster (lower left corner)
 #' to be (X1,Y1) instead of computing an origin from the data extents and force the upper right corner to be (X2, Y2).
-#' X2 and Y2 will be rounded up to a multiple of \code{cellsize}. \strong{WARNING:} the \emph{center} of the outpur raster
-#' cells will be aligned to the vector defined by \code{gridxy}, not the cell edges. To facilitate the use of \code{gridxy},
-#' use the \code{\link{FUSIONExtentRounder}} function.
+#' \strong{WARNING:} the \code{rFUSION.grixyAdjust} global option can influence the behaviour of this argument. See
+#' \code{\link{GridXY}} for more details.
 #' @param align A PLANS format DTM file to which an output raster will be aligned. Same behavior as \code{gridxy}, except
 #' parameters are read from the DTM file.
 #' @param extent A PLANS format DTM file. Force the origin and extent of the output grid to match the lower left corner
@@ -66,7 +65,7 @@ ASCII2DTM <- function(surfacefile,
   inputs <- c("surfacefile", "xyunits", "zunits", "coordsys", "zone", "horizdatum", "vertdatum", "Gridfile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -84,7 +83,7 @@ CanopyModel <- function(surfacefile, cellsize, datafile,
   inputs <- c("surfacefile", "cellsize", "xyunits", "zunits", "coordsys", "zone", "horizdatum", "vertdatum", "datafile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -101,7 +100,7 @@ ClipData <- function(InputSpecifier, SampleFile, MinX, MinY, MaxX, MaxY,
   inputs <- c("InputSpecifier", "SampleFile", "MinX", "MinY", "MaxX", "MaxY")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -116,7 +115,7 @@ CloudMetrics <- function(InputDataSpecifier, OutputFileName, above = NULL, new =
   inputs <- c("InputDataSpecifier", "OutputFileName")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 #' @describeIn FUSIONtools Converts data stored in comma separated value (CSV) format into ASCII raster format
@@ -129,7 +128,7 @@ CSV2Grid <- function(inputfile, column, outputfile,
   inputs <- c("inputfile", "column", "outputfile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -143,7 +142,7 @@ DTM2ASCII <- function(inputfile, outputfile,
   inputs <- c("inputfile", "outputfile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -156,7 +155,7 @@ DTM2TIF <- function(inputfile, outputfile = NULL,mask = NULL){
   inputs <- c("inputfile", "outputfile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 #' @describeIn FUSIONtools Computes a series of descriptive statistics for a LIDAR data set
@@ -173,7 +172,7 @@ GridMetrics <- function(groundfile, heightbreak, cellsize, outputfile, datafile,
   inputs <- c("groundfile", "heightbreak", "cellsize", "outputfile", "datafile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -189,7 +188,7 @@ GridSurfaceCreate <- function(surfacefile, cellsize, datafile,
   inputs <- c("surfacefile", "cellsize", "xyunits", "zunits", "coordsys", "zone", "horizdatum", "vertdatum", "datafile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -206,7 +205,7 @@ GroundFilter <- function(outputfile, cellsize, datafile,
   inputs <- c("outputfile", "cellsize", "datafile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
 }
 
 
@@ -220,7 +219,7 @@ LDA2ASCII <- function(InputFile, OutputFile, format){
   inputs <- c("InputFile", "OutputFile", "format")
 
 # Execute tool
-executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))}
+.executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))}
 
 
 #' @describeIn FUSIONtools Clip a point cloud to a shapefile (SHP)
@@ -232,4 +231,17 @@ PolyClipData <- function(Polyfile, Outputfile, Datafile, multifile = NULL, class
   inputs <- c("Polyfile", "Outputfile", "Datafile")
 
   # Execute tool
-  executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))}
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))}
+
+
+#' @describeIn FUSIONtools Thin LIDAR data to specific pulse densities.
+#' @export
+
+ThinData <- function(outputfile, density, cellsize, datafile, rseed = NULL, index = NULL, class = NULL, lda = NULL, precision = NULL){
+
+  # Set names of inputs
+  inputs <- c("outputfile", "density", "cellsize", "datafile")
+
+  # Execute tool
+  .executeFunction(toolName = as.character(match.call()[[1]]),  inputs = inputs, formals = names(formals()))
+}
