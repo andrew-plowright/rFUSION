@@ -16,7 +16,8 @@
   op.current <- options()
   op.rFUSION <- list(
     rFUSION.path = "C:\\FUSION",
-    rFUSION.printToConsole = TRUE
+    rFUSION.printToConsole = TRUE,
+    rFUSION.grixyAdjust = TRUE
   )
   toset <- !(names(op.rFUSION) %in% names(op.current))
   if(any(toset)) options(op.rFUSION[toset])

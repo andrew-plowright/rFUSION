@@ -34,7 +34,7 @@ FUSIONfolder <- function(path = NULL){
 #' @return If no input is given, the current value of the \code{rFUSION.printToConsole} global option is returned
 #' @export
 
-FUSIONprintToConsole <- function(value = NULL){
+PrintToConsole <- function(value = NULL){
 
   if(is.null(value)){
 
@@ -49,6 +49,40 @@ FUSIONprintToConsole <- function(value = NULL){
     }else{
 
       options(rFUSION.printToConsole = value)
+
+    }
+  }
+}
+
+#' Adjust "grid XY"
+#'
+#' The \code{gridxy} argument, can be used to define the extent of rasters output by several FUSION functions.
+#' However, when FUSION functions are run from the command line, the \emph{centre} of the outmost cells will
+#' align with the coordinates supplied by \code{gridxy}. When \code{GridXYAdjust} is set to TRUE
+#' (which it is by default), an automatic adjustment will be made so that the OUTER EDGE of the cells
+#' aligns with the coordinates instead. This applies to all FUSION functions using the \code{gridxy} argument.
+#'
+#' @param value logical. If set to TRUE, all values used as inputs for the \code{gridxy} argument will
+#' be adjusted before being passed to the FUSION command line functions, in order for the output raster's edges
+#' to align with \code{gridxy}.
+#' @return If no input is given, the current value of the \code{rFUSION.grixyAdjust} global option is returned
+#' @export
+
+GridXYAdjust <- function(value = NULL){
+
+  if(is.null(value)){
+
+    options()$rFUSION.grixyAdjust
+
+  }else{
+
+    if(!is.logical(value)){
+
+      stop("Input must be TRUE or FALSE")
+
+    }else{
+
+      options(rFUSION.grixyAdjust = value)
 
     }
   }

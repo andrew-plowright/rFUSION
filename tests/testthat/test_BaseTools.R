@@ -79,7 +79,7 @@ context("Tests for rFUSION base tools")
 
 ### DO TESTS
 
-  test_that("Check that 'GroundFilter' created the expected ouput", {
+  test_that("Check that 'GroundFilter' created the expected output", {
 
     expect_true(file.exists(tempFile("groundfilt.las")))
     expect_equal(file.info(tempFile("groundfilt.las"))$size, 391797)
@@ -113,14 +113,14 @@ context("Tests for rFUSION base tools")
     expect_equal(cloudMetrics[,"All.returns.above.mean"], c(731, 674))
   })
 
-  test_that("Check that 'ClipData' created the expected ouput", {
+  test_that("Check that 'ClipData' created the expected output", {
 
     expect_true(file.exists(tempFile("clipSample.las")))
     expect_equal(file.info(tempFile("clipSample.las"))$size, 82873)
   })
 
 
-  test_that("Check that 'LDA2ASCII' created the expected ouput", {
+  test_that("Check that 'LDA2ASCII' created the expected output", {
 
     expect_true(file.exists(tempFile("ascii.csv")))
 
